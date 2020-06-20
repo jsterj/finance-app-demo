@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   finance_core:
-    image: jsterj/finance-app-demo:1.0
+    image: jsterj/finance-app-demo:1.1
     networks:
     - finance_net_web
     - finance_net_db
@@ -29,7 +29,7 @@ services:
     - finance_net_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 3dW3#$xA#FMtc0zM
+      MYSQL_ROOT_PASSWORD: badpassword
       MYSQL_DATABASE: finance_db_main
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
