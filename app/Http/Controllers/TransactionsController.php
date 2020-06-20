@@ -23,7 +23,7 @@ class TransactionsController extends Controller
         //get the user's current balance
         $balance = $user->transactions()->sum('amount');
 
-        return view('transactions', ['transactions' => $transactions, 'balance' => $balance]);
+        return view('transactions', ['transactions' => $transactions->toJson(), 'balance' => $balance]);
     }
 
     /**
