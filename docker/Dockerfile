@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.2-fpm
 
 # update / upgrade / install dependencies
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y openssl zip unzip git zlib1g-dev nano gnupg2
