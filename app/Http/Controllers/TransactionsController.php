@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionsController extends Controller
@@ -13,7 +15,15 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        return view('transactions');
+        $user = Auth::user();
+
+        //obtain the user's most recent transactions (count defined in config 'finance.transaction.numTransactionsToList)
+        $transactions = $user->transactions()->select('label', 'date', 'amount')->orderBy('date', 'desc')->take(config('finance.transaction.numTransactionsToList'))->get();
+
+        //get the user's current balance
+        $balance = $user->transactions()->sum('amount');
+
+        return view('transactions', ['transactions' => $transactions, 'balance' => $balance]);
     }
 
     /**
@@ -23,7 +33,7 @@ class TransactionsController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -45,7 +55,7 @@ class TransactionsController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -56,7 +66,7 @@ class TransactionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**

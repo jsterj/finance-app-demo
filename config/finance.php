@@ -21,4 +21,13 @@
       'profileImageDimension' => '30px',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Config values related to transactions
+    |--------------------------------------------------------------------------
+    */
+    'transaction' => [
+      'numTransactionsToList' => '100',  //the number of transactions to list at once on the screen
+    ],
+
   ];
