@@ -1990,6 +1990,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     currentBalance: Number
@@ -6497,7 +6511,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.transaction-navbar {\n  background-color: #192b4e;\n  height: 150px;\n}\n.transaction-navbar-inner-div {\n  height: 100%;\n}\n.navbar-text {\n  color: white;\n}\n.navbar-text-secondary {\n  color: #a3aab8;\n}\n.navbar-button {\n  background-color: #0054fe;\n}\n", ""]);
+exports.push([module.i, "\n.transaction-navbar {\n  background-color: #192b4e;\n  height: 150px;\n}\n.transaction-navbar-inner-div {\n  height: 100%;\n}\n.navbar-text {\n  color: white;\n}\n.navbar-text-secondary {\n  color: #a3aab8;\n}\n.navbar-button {\n  background-color: #0054fe;\n}\n.positive-balance {\n  color: #00b357;\n}\n", ""]);
 
 // exports
 
@@ -38360,63 +38374,89 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "transaction-navbar" }, [
+    _c("div", { staticClass: "container transaction-navbar-inner-div" }, [
+      _c("div", { staticClass: "row transaction-navbar-inner-div" }, [
+        _c("div", { staticClass: "col" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-10 align-self-center" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row pr-3" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-3 align-self-center" }, [
+                _c("h5", { staticClass: "navbar-text-secondary float-right" }, [
+                  _vm._v("TOTAL BALANCE")
+                ]),
+                _vm._v(" "),
+                _vm.currentBalance > 0
+                  ? _c("h4", { staticClass: "float-right positive-balance" }, [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(
+                            _vm.formatCurrency(_vm.currentBalance, false)
+                          ) +
+                          "\n              "
+                      )
+                    ])
+                  : _c("h4", { staticClass: "float-right" }, [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(
+                            _vm.formatCurrency(_vm.currentBalance, false)
+                          ) +
+                          "\n              "
+                      )
+                    ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col" })
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "transaction-navbar" }, [
-      _c("div", { staticClass: "container transaction-navbar-inner-div" }, [
-        _c("div", { staticClass: "row transaction-navbar-inner-div" }, [
-          _c("div", { staticClass: "col" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-10 align-self-center" }, [
-            _c("h3", { staticClass: "navbar-text align-self-center" }, [
-              _vm._v("Your Balance")
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary border-0 navbar-button ml-3 pl-0",
-                attrs: { type: "button" }
-              },
-              [
-                _c("img", {
-                  staticClass: "mr-2",
-                  attrs: { src: "img/add.png", width: "10%" }
-                }),
-                _vm._v("\n          ADD ENTRY\n        ")
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary border-0 navbar-button ml-3 pl-0",
-                attrs: { type: "button" }
-              },
-              [
-                _c("img", {
-                  staticClass: "mr-2",
-                  attrs: { src: "img/import.png", width: "10%" }
-                }),
-                _vm._v("\n          IMPORT CSV\n        ")
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "float-right" }, [
-              _c("h5", { staticClass: "navbar-text-secondary mr-2" }, [
-                _vm._v("TOTAL BALANCE")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col" })
-        ])
-      ])
+    return _c("div", { staticClass: "col-9 align-self-center" }, [
+      _c("h3", { staticClass: "navbar-text align-self-center" }, [
+        _vm._v("Your Balance")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary border-0 navbar-button ml-3 pl-0",
+          attrs: { type: "button" }
+        },
+        [
+          _c("img", {
+            staticClass: "mr-2",
+            attrs: { src: "img/add.png", width: "10%" }
+          }),
+          _vm._v("\n                ADD ENTRY\n              ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary border-0 navbar-button ml-3 pl-0",
+          attrs: { type: "button" }
+        },
+        [
+          _c("img", {
+            staticClass: "mr-2",
+            attrs: { src: "img/import.png", width: "10%" }
+          }),
+          _vm._v("\n                IMPORT CSV\n              ")
+        ]
+      )
     ])
   }
 ]
