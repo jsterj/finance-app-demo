@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col"></div>
         <div class="col-8">
-          <ul id="transaction-list">
+          <ul id="transaction-list" class="p-0">
             <li v-for="currentTransaction in currentTransactions">
               <div class="card mb-3">
                 <div class="card-body">

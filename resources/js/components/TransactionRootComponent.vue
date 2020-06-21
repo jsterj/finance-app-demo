@@ -1,12 +1,7 @@
 <template>
   <div>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <transaction-list-component :currentBalance="currentBalance" :currentTransactions="currentTransactions"></transaction-list-component>
-        </div>
-      </div>
-    </div>
+    <transaction-navbar-component :currentBalance="currentBalance" ></transaction-navbar-component>
+    <transaction-list-component :currentBalance="currentBalance" :currentTransactions="currentTransactions"></transaction-list-component>        
   </div>
 </template>
 

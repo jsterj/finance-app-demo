@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('transaction-root-component', require('./components/TransactionRootComponent.vue').default);
 Vue.component('transaction-list-component', require('./components/TransactionListComponent.vue').default);
+Vue.component('transaction-navbar-component', require('./components/TransactionNavbarComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
