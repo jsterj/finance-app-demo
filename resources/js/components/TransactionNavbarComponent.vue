@@ -5,14 +5,17 @@
         <div class="col"></div>
         <div class="col-10 align-self-center">
           <h3 class="navbar-text align-self-center">Your Balance</h3>
-          <button type="button" class="btn btn-primary border-0 navbar-button ml-3 pl-0" width="1.5em" height="1.5em">
+          <button type="button" class="btn btn-primary border-0 navbar-button ml-3 pl-0">
             <img src="img/add.png" class="mr-2" width="10%" />
             ADD ENTRY
           </button>
-          <button type="button" class="btn btn-primary border-0 navbar-button ml-3 pl-0" width="1.5em" height="1.5em">
+          <button type="button" class="btn btn-primary border-0 navbar-button ml-3 pl-0">
             <img src="img/import.png" class="mr-2" width="10%" />
             IMPORT CSV
           </button>
+          <div class="float-right">
+            <h5 class="navbar-text-secondary mr-2">TOTAL BALANCE</h5>
+          </div>
         </div>
         <div class="col"></div>
       </div>
@@ -41,6 +44,9 @@
   }
   .navbar-text {
     color: white;
+  }
+  .navbar-text-secondary {
+    color: #a3aab8;
   }
   .navbar-button {
     background-color: #0054fe;

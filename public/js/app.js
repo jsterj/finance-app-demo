@@ -1995,6 +1995,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     currentBalance: Number
@@ -6502,7 +6505,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.transaction-navbar {\n  background-color: #192b4e;\n  height: 150px;\n}\n.transaction-navbar-inner-div {\n  height: 100%;\n}\n.navbar-text {\n  color: white;\n}\n.navbar-button {\n  background-color: #0054fe;\n}\n", ""]);
+exports.push([module.i, "\n.transaction-navbar {\n  background-color: #192b4e;\n  height: 150px;\n}\n.transaction-navbar-inner-div {\n  height: 100%;\n}\n.navbar-text {\n  color: white;\n}\n.navbar-text-secondary {\n  color: #a3aab8;\n}\n.navbar-button {\n  background-color: #0054fe;\n}\n", ""]);
 
 // exports
 
@@ -38384,7 +38387,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass: "btn btn-primary border-0 navbar-button ml-3 pl-0",
-                attrs: { type: "button", width: "1.5em", height: "1.5em" }
+                attrs: { type: "button" }
               },
               [
                 _c("img", {
@@ -38399,7 +38402,7 @@ var staticRenderFns = [
               "button",
               {
                 staticClass: "btn btn-primary border-0 navbar-button ml-3 pl-0",
-                attrs: { type: "button", width: "1.5em", height: "1.5em" }
+                attrs: { type: "button" }
               },
               [
                 _c("img", {
@@ -38408,7 +38411,13 @@ var staticRenderFns = [
                 }),
                 _vm._v("\n          IMPORT CSV\n        ")
               ]
-            )
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "float-right" }, [
+              _c("h5", { staticClass: "navbar-text-secondary mr-2" }, [
+                _vm._v("TOTAL BALANCE")
+              ])
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col" })
