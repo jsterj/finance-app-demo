@@ -16,10 +16,10 @@
                       </div>
                       <div class="col-3 align-self-center">
                         <h4 v-if="Number(currentTransaction.amount) > 0" class="float-right deposit">
-                          {{ formatCurrency(currentTransaction.amount) }}
+                          {{ formatCurrency(currentTransaction.amount, true) }}
                         </h4>
                         <h4 v-else class="float-right">
-                          {{ formatCurrency(currentTransaction.amount) }}
+                          {{ formatCurrency(currentTransaction.amount, true) }}
                         </h4>
                       </div>
                     </div>
@@ -40,14 +40,6 @@
       props: {
         currentBalance: Number,
         currentTransactions: [Object, Array],
-      },
-      methods: {
-        //format a transaction amount string as currency and prepend with "+" or "-"
-        formatCurrency: function(str) {
-          str = Number(str);
-          var sign = (str > 0) ? '+' : '-';
-          return sign + " $" + Math.abs(str).toFixed(2);
-        },
       },
       mounted(){
         //

@@ -1950,14 +1950,6 @@ __webpack_require__.r(__webpack_exports__);
     currentBalance: Number,
     currentTransactions: [Object, Array]
   },
-  methods: {
-    //format a transaction amount string as currency and prepend with "+" or "-"
-    formatCurrency: function formatCurrency(str) {
-      str = Number(str);
-      var sign = str > 0 ? '+' : '-';
-      return sign + " $" + Math.abs(str).toFixed(2);
-    }
-  },
   mounted: function mounted() {//
   }
 });
@@ -38311,7 +38303,8 @@ var render = function() {
                                   "\n                        " +
                                     _vm._s(
                                       _vm.formatCurrency(
-                                        currentTransaction.amount
+                                        currentTransaction.amount,
+                                        true
                                       )
                                     ) +
                                     "\n                      "
@@ -38322,7 +38315,8 @@ var render = function() {
                                   "\n                        " +
                                     _vm._s(
                                       _vm.formatCurrency(
-                                        currentTransaction.amount
+                                        currentTransaction.amount,
+                                        true
                                       )
                                     ) +
                                     "\n                      "
@@ -50661,6 +50655,20 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('transaction-root-component', __webpack_require__(/*! ./components/TransactionRootComponent.vue */ "./resources/js/components/TransactionRootComponent.vue")["default"]);
 Vue.component('transaction-list-component', __webpack_require__(/*! ./components/TransactionListComponent.vue */ "./resources/js/components/TransactionListComponent.vue")["default"]);
 Vue.component('transaction-navbar-component', __webpack_require__(/*! ./components/TransactionNavbarComponent.vue */ "./resources/js/components/TransactionNavbarComponent.vue")["default"]);
+/**
+ * Define global mixins
+ */
+
+Vue.mixin({
+  methods: {
+    //format a transaction amount string as currency and prepend with "+" or "-"
+    formatCurrency: function formatCurrency(str, useSign) {
+      str = Number(str);
+      var sign = str > 0 ? '+' : '-';
+      return (useSign ? sign + ' ' : '') + "$" + Math.abs(str).toFixed(2);
+    }
+  }
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
