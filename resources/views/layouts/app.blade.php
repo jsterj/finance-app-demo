@@ -51,6 +51,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="img/alarm.svg" class="mr-3 mt-1" />
                                   @if (Auth::user()->profile_image)
                                     <img class="mr-3" src="{{ config('finance.user.profileImagePath') . Auth::user()->profile_image . '.' . config('finance.user.profileImageType') }}" height="{{ config('finance.user.profileImageDimension') }}"/>
                                   @else
