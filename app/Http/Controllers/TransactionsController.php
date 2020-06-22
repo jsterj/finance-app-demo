@@ -15,15 +15,53 @@ class TransactionsController extends Controller
      */
     public function index()
     {
+        //obtain the user's most recent transactions
+        $transactions = $this->getCurrentTransactions();
+
+        //get the user's current balance
+        $balance = Auth::user()->transactions()->sum('amount');
+
+        return view('transactions', ['transactions' => $transactions->toJson(), 'balance' => $balance]);
+    }
+
+    /**
+     * Obtain the user's most recent transactions and calculate their current balance
+     *
+     * @return JSON
+     */
+    public function getUpdate()
+    {
         $user = Auth::user();
 
-        //obtain the user's most recent transactions (count defined in config 'finance.transaction.numTransactionsToList)
-        $transactions = $user->transactions()->select('label', 'date', 'amount')->orderBy('date', 'desc')->take(config('finance.transaction.numTransactionsToList'))->get();
+        if(!$user) {
+          return response()->json([
+              'status' => 'unauthenticated'
+          ]);
+        }
+
+        //obtain the user's most recent transactions
+        $transactions = $this->getCurrentTransactions();
 
         //get the user's current balance
         $balance = $user->transactions()->sum('amount');
 
-        return view('transactions', ['transactions' => $transactions->toJson(), 'balance' => $balance]);
+        return response()->json([
+            'status' => 'ok',
+            'transactions' => $transactions,
+            'balance' => $balance
+        ]);
+    }
+
+    /**
+     * Return the user's most recent transactions
+     * (count defined in config 'finance.transaction.numTransactionsToList)
+     *
+     * @return Collection
+     */
+    private function getCurrentTransactions()
+    {
+        $user = Auth::user();
+        return $user->transactions()->select('label', 'date', 'amount')->orderBy('date', 'desc')->take(config('finance.transaction.numTransactionsToList'))->get();
     }
 
     /**
