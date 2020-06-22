@@ -2178,12 +2178,21 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     //call server for updated data
     update: function update() {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/transactions/getupdate', {
         headers: {
           'Accept': 'application/json'
         }
       }).then(function (response) {
-        console.log(response.data);
+        var data = response.data;
+
+        if (data.status == 'ok') {
+          _this.currentBalance = Number(data.balance);
+          _this.currentTransactions = data.transactions;
+        } else {
+          console.log('error retrieving update');
+        }
       })["catch"](function (error) {
         console.log(error);
       });

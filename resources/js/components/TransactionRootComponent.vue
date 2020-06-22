@@ -33,7 +33,13 @@
               }
           })
             .then(response => {
-                 console.log(response.data);
+                 var data = response.data;
+                 if(data.status == 'ok'){
+                   this.currentBalance = Number(data.balance);
+                   this.currentTransactions = data.transactions;
+                 } else {
+                   console.log('error retrieving update');
+                 }
             })
             .catch(error => {
               console.log(error);
