@@ -6,7 +6,7 @@
         <div class="col-10">
 
           <ul id="transaction-list" class="p-0">
-            <li v-for="currentTransaction in formattedTransactions">
+            <li v-for="(currentTransaction, index) in formattedTransactions">
 
               <!-- daily header when applicable -->
               <div v-if="currentTransaction.headerDate" class="container">
@@ -25,15 +25,20 @@
                 </div>
               </div>
 
-
-
-              <div class="card mb-3">
+              <!-- card with transaction info -->
+              <div class="card mb-3" @mouseover="mouseover" @mouseleave="mouseleave">
                 <div class="card-body">
                   <div class="container">
                     <div class="row">
-                      <div class="col-9 align-self-center">
+                      <div class="col-6 align-self-center">
                         <h4>{{ currentTransaction.label }}</h4>
                         <p class="text-muted m-0">{{ currentTransaction.date }}</p>
+                      </div>
+                      <div class="col-3 align-self-center">
+                        <div class="edit-links float-right">
+                          <a href="#" class="mr-3">EDIT</a>
+                          <a href="#">DELETE</a>
+                        </div>
                       </div>
                       <div class="col-3 align-self-center">
                         <h4 v-if="Number(currentTransaction.amount) > 0" class="float-right deposit">
@@ -84,6 +89,12 @@
           var month = date.getMonth();
           return months[month];
         },
+        mouseover: function (event) {
+          event.currentTarget.querySelector('.edit-links').style.display = 'block';
+        },
+        mouseleave: function (event) {
+          event.currentTarget.querySelector('.edit-links').style.display = 'none';
+        },
       },
       computed: {
         //build a new array of transactions with daily header strings and formatted amount strings with "$" and "+" or "-"
@@ -126,7 +137,7 @@
             newArray[i].amountString = this.formatCurrency(newArray[i].amount, true);
           }
           return newArray;
-        }
+        },
       },
     }
 </script>
@@ -137,5 +148,8 @@
   }
   .deposit {
     color: #00b357;
+  }
+  .edit-links {
+    display: none;
   }
 </style>

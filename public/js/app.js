@@ -1968,6 +1968,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     currentBalance: Number,
@@ -1991,6 +1996,12 @@ __webpack_require__.r(__webpack_exports__);
       var months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
       var month = date.getMonth();
       return months[month];
+    },
+    mouseover: function mouseover(event) {
+      event.currentTarget.querySelector('.edit-links').style.display = 'block';
+    },
+    mouseleave: function mouseleave(event) {
+      event.currentTarget.querySelector('.edit-links').style.display = 'none';
     }
   },
   computed: {
@@ -6599,7 +6610,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nul {\n  list-style-type: none;\n}\n.deposit {\n  color: #00b357;\n}\n", ""]);
+exports.push([module.i, "\nul {\n  list-style-type: none;\n}\n.deposit {\n  color: #00b357;\n}\n.edit-links {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -38403,7 +38414,10 @@ var render = function() {
           _c(
             "ul",
             { staticClass: "p-0", attrs: { id: "transaction-list" } },
-            _vm._l(_vm.formattedTransactions, function(currentTransaction) {
+            _vm._l(_vm.formattedTransactions, function(
+              currentTransaction,
+              index
+            ) {
               return _c("li", [
                 currentTransaction.headerDate
                   ? _c("div", { staticClass: "container" }, [
@@ -38463,39 +38477,66 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "card mb-3" }, [
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("div", { staticClass: "container" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-9 align-self-center" }, [
-                          _c("h4", [_vm._v(_vm._s(currentTransaction.label))]),
+                _c(
+                  "div",
+                  {
+                    staticClass: "card mb-3",
+                    on: { mouseover: _vm.mouseover, mouseleave: _vm.mouseleave }
+                  },
+                  [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "container" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-6 align-self-center" },
+                            [
+                              _c("h4", [
+                                _vm._v(_vm._s(currentTransaction.label))
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "text-muted m-0" }, [
+                                _vm._v(_vm._s(currentTransaction.date))
+                              ])
+                            ]
+                          ),
                           _vm._v(" "),
-                          _c("p", { staticClass: "text-muted m-0" }, [
-                            _vm._v(_vm._s(currentTransaction.date))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-3 align-self-center" }, [
-                          Number(currentTransaction.amount) > 0
-                            ? _c("h4", { staticClass: "float-right deposit" }, [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(currentTransaction.amountString) +
-                                    "\n                      "
-                                )
-                              ])
-                            : _c("h4", { staticClass: "float-right" }, [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(currentTransaction.amountString) +
-                                    "\n                      "
-                                )
-                              ])
+                          _vm._m(0, true),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-3 align-self-center" },
+                            [
+                              Number(currentTransaction.amount) > 0
+                                ? _c(
+                                    "h4",
+                                    { staticClass: "float-right deposit" },
+                                    [
+                                      _vm._v(
+                                        "\n                        " +
+                                          _vm._s(
+                                            currentTransaction.amountString
+                                          ) +
+                                          "\n                      "
+                                      )
+                                    ]
+                                  )
+                                : _c("h4", { staticClass: "float-right" }, [
+                                    _vm._v(
+                                      "\n                        " +
+                                        _vm._s(
+                                          currentTransaction.amountString
+                                        ) +
+                                        "\n                      "
+                                    )
+                                  ])
+                            ]
+                          )
                         ])
                       ])
                     ])
-                  ])
-                ])
+                  ]
+                )
               ])
             }),
             0
@@ -38507,7 +38548,22 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-3 align-self-center" }, [
+      _c("div", { staticClass: "edit-links float-right" }, [
+        _c("a", { staticClass: "mr-3", attrs: { href: "#" } }, [
+          _vm._v("EDIT")
+        ]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "#" } }, [_vm._v("DELETE")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
