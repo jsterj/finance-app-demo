@@ -26,7 +26,7 @@
               </div>
 
               <!-- card with transaction info -->
-              <div class="card mb-3" @mouseover="mouseover" @mouseleave="mouseleave">
+              <div class="card mt-3" @mouseover="mouseover" @mouseleave="mouseleave">
                 <div class="card-body">
                   <div class="container">
                     <div class="row">
@@ -53,6 +53,22 @@
                 </div>
               </div>
 
+              <!-- edit form -->
+              <div class="card mt-0 edit-form">
+                <div class="card-body">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col align-self-center">
+                        <form method="POST" :action="'/transactions/' + String(currentTransaction.id) + '/asyncupdate'">
+                          <input type="hidden" name="_token" :value="csrf">
+                          somethign
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </li>
           </ul>
 
@@ -66,6 +82,7 @@
 <script>
     export default {
       props: {
+        csrf: String,
         currentBalance: Number,
         currentTransactions: [Object, Array],
       },
@@ -170,5 +187,8 @@
   }
   .edit-links {
     display: none;
+  }
+  .edit-form {
+    display: block
   }
 </style>

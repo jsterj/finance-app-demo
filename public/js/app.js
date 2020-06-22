@@ -1973,8 +1973,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    csrf: String,
     currentBalance: Number,
     currentTransactions: [Object, Array]
   },
@@ -2127,6 +2144,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    csrf: String,
     currentBalance: Number
   },
   mounted: function mounted() {//
@@ -2167,7 +2185,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       currentBalance: 0,
-      currentTransactions: []
+      currentTransactions: [],
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
   mounted: function mounted() {
@@ -6644,7 +6663,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nul {\n  list-style-type: none;\n}\n.deposit {\n  color: #00b357;\n}\n.edit-links {\n  display: none;\n}\n", ""]);
+exports.push([module.i, "\nul {\n  list-style-type: none;\n}\n.deposit {\n  color: #00b357;\n}\n.edit-links {\n  display: none;\n}\n.edit-form {\n  display: block\n}\n", ""]);
 
 // exports
 
@@ -38514,7 +38533,7 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "card mb-3",
+                    staticClass: "card mt-3",
                     on: { mouseover: _vm.mouseover, mouseleave: _vm.mouseleave }
                   },
                   [
@@ -38604,7 +38623,39 @@ var render = function() {
                       ])
                     ])
                   ]
-                )
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card mt-0 edit-form" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "container" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col align-self-center" }, [
+                          _c(
+                            "form",
+                            {
+                              attrs: {
+                                method: "POST",
+                                action:
+                                  "/transactions/" +
+                                  String(currentTransaction.id) +
+                                  "/asyncupdate"
+                              }
+                            },
+                            [
+                              _c("input", {
+                                attrs: { type: "hidden", name: "_token" },
+                                domProps: { value: _vm.csrf }
+                              }),
+                              _vm._v(
+                                "\n                        somethign\n                      "
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
               ])
             }),
             0
@@ -38646,30 +38697,7 @@ var render = function() {
         _c("div", { staticClass: "col-10 align-self-center" }, [
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row pr-3" }, [
-              _c("div", { staticClass: "col-9 align-self-center" }, [
-                _c("h3", { staticClass: "navbar-text align-self-center" }, [
-                  _vm._v("Your Balance")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "btn btn-primary border-0 navbar-button ml-3 pl-0",
-                    attrs: { type: "button" },
-                    on: { click: _vm.emitUpdate }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "mr-2",
-                      attrs: { src: "img/add.png", width: "10%" }
-                    }),
-                    _vm._v("\n                ADD ENTRY\n              ")
-                  ]
-                ),
-                _vm._v(" "),
-                _vm._m(0)
-              ]),
+              _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "col-3 align-self-center" }, [
                 _c("h5", { staticClass: "navbar-text-secondary float-right" }, [
@@ -38710,20 +38738,41 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-primary border-0 navbar-button ml-3 pl-0",
-        attrs: { type: "button" }
-      },
-      [
-        _c("img", {
-          staticClass: "mr-2",
-          attrs: { src: "img/import.png", width: "10%" }
-        }),
-        _vm._v("\n                IMPORT CSV\n              ")
-      ]
-    )
+    return _c("div", { staticClass: "col-9 align-self-center" }, [
+      _c("h3", { staticClass: "navbar-text align-self-center" }, [
+        _vm._v("Your Balance")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary border-0 navbar-button ml-3 pl-0",
+          attrs: { type: "button" }
+        },
+        [
+          _c("img", {
+            staticClass: "mr-2",
+            attrs: { src: "img/add.png", width: "10%" }
+          }),
+          _vm._v("\n                ADD ENTRY\n              ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary border-0 navbar-button ml-3 pl-0",
+          attrs: { type: "button", disabled: "" }
+        },
+        [
+          _c("img", {
+            staticClass: "mr-2",
+            attrs: { src: "img/import.png", width: "10%" }
+          }),
+          _vm._v("\n                IMPORT CSV\n              ")
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -38751,12 +38800,13 @@ var render = function() {
     "div",
     [
       _c("transaction-navbar-component", {
-        attrs: { currentBalance: _vm.currentBalance },
+        attrs: { csrf: _vm.csrf, currentBalance: _vm.currentBalance },
         on: { update: _vm.update }
       }),
       _vm._v(" "),
       _c("transaction-list-component", {
         attrs: {
+          csrf: _vm.csrf,
           currentBalance: _vm.currentBalance,
           currentTransactions: _vm.currentTransactions
         },

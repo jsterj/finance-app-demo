@@ -1,7 +1,7 @@
 <template>
   <div>
-    <transaction-navbar-component @update="update" :currentBalance="currentBalance" ></transaction-navbar-component>
-    <transaction-list-component @update="update" :currentBalance="currentBalance" :currentTransactions="currentTransactions"></transaction-list-component>
+    <transaction-navbar-component @update="update" :csrf="csrf" :currentBalance="currentBalance" ></transaction-navbar-component>
+    <transaction-list-component @update="update" :csrf="csrf" :currentBalance="currentBalance" :currentTransactions="currentTransactions"></transaction-list-component>
   </div>
 </template>
 
@@ -17,6 +17,7 @@
         return {
             currentBalance: 0,
             currentTransactions: [],
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         }
       },
       mounted(){

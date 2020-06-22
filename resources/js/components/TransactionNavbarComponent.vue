@@ -9,11 +9,11 @@
             <div class="row pr-3">
               <div class="col-9 align-self-center">
                 <h3 class="navbar-text align-self-center">Your Balance</h3>
-                <button @click="emitUpdate" type="button" class="btn btn-primary border-0 navbar-button ml-3 pl-0">
+                <button type="button" class="btn btn-primary border-0 navbar-button ml-3 pl-0">
                   <img src="img/add.png" class="mr-2" width="10%" />
                   ADD ENTRY
                 </button>
-                <button type="button" class="btn btn-primary border-0 navbar-button ml-3 pl-0">
+                <button type="button" class="btn btn-primary border-0 navbar-button ml-3 pl-0" disabled>
                   <img src="img/import.png" class="mr-2" width="10%" />
                   IMPORT CSV
                 </button>
@@ -40,6 +40,7 @@
 <script>
     export default {
       props: {
+        csrf: String,
         currentBalance: Number,
       },
       mounted(){
