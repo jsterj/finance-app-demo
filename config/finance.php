@@ -28,7 +28,10 @@
     |--------------------------------------------------------------------------
     */
     'transaction' => [
-      'numTransactionsToList' => '100',  //the number of transactions to list at once on the screen
+      'numTransactionsToList' => 100,  //the number of transactions to list at once on the screen
+      'maxLabelLength' => 35,          //the maximum character length for labels
+      'maxAmount' => 5000,               //the maximum amount value
+      'minAmount' => -5000,              //the minimum amount value
     ],
 
   ];

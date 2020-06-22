@@ -94,9 +94,9 @@ class TransactionsController extends Controller
 
         //validate the input
         $validator = Validator::make($request->all(), [
-          'label' => 'required|max:35',
+          'label' => 'required|max:' . config('finance.transaction.maxLabelLength'),
           'date' => 'required|date',
-          'amount' => 'required|numeric|max:5000|min:-5000',
+          'amount' => 'required|numeric|max:' . config('finance.transaction.maxAmount') . '|min:' . config('finance.transaction.minAmount'),
         ]);
 
         if ($validator->fails()) {
@@ -184,9 +184,9 @@ class TransactionsController extends Controller
 
         //validate the input
         $validator = Validator::make($request->all(), [
-          'label' => 'required|max:35',
+          'label' => 'required|max:' . config('finance.transaction.maxLabelLength'),
           'date' => 'required|date',
-          'amount' => 'required|numeric|max:5000|min:-5000',
+          'amount' => 'required|numeric|max:' . config('finance.transaction.maxAmount') . '|min:' . config('finance.transaction.minAmount'),
         ]);
 
         if ($validator->fails()) {
