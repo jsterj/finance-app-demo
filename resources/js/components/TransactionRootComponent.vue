@@ -1,11 +1,13 @@
 <template>
   <div>
-    <transaction-navbar-component :currentBalance="currentBalance" ></transaction-navbar-component>
-    <transaction-list-component :currentBalance="currentBalance" :currentTransactions="currentTransactions"></transaction-list-component>        
+    <transaction-navbar-component @update="update" :currentBalance="currentBalance" ></transaction-navbar-component>
+    <transaction-list-component @update="update" :currentBalance="currentBalance" :currentTransactions="currentTransactions"></transaction-list-component>
   </div>
 </template>
 
 <script>
+    import axios from "axios";
+
     export default {
       props: {
         balance: Number,
@@ -21,6 +23,18 @@
         //initialize data values from props sent by the view
         this.currentBalance = this.balance;
         this.currentTransactions = this.transactions;
+      },
+      methods: {
+        //call server for updated data
+        update: function () {
+          axios.get('/transactions/getupdate')
+            .then(response => {
+                 console.log(response.data);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }
       }
     }
 </script>
