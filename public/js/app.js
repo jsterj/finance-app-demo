@@ -2316,7 +2316,11 @@ __webpack_require__.r(__webpack_exports__);
         }
       })["catch"](function (error) {
         console.log(error);
-      });
+      }); //clear the form inputs
+
+      this.$refs[formTagRef].elements.labelInput.value = '';
+      this.$refs[formTagRef].elements.dateInput.value = '';
+      this.$refs[formTagRef].elements.amountInput.value = '';
     }
   }
 });
