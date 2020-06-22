@@ -36,7 +36,7 @@
                       </div>
                       <div class="col-3 align-self-center">
                         <div class="edit-links float-right">
-                          <a href="#" class="mr-3">EDIT</a>
+                          <a href="#" @click="showForm('form-' + currentTransaction.id)" class="mr-3">EDIT</a>
                           <a href="#" @click="deleteTransaction(currentTransaction.id)">DELETE</a>
                         </div>
                       </div>
@@ -54,15 +54,48 @@
               </div>
 
               <!-- edit form -->
-              <div class="card mt-0 edit-form">
+              <div class="card mt-0 edit-form" :ref="'form-' + String(currentTransaction.id)">
                 <div class="card-body">
-                  <div class="container">
+                  <div class="container mt-4">
                     <div class="row">
                       <div class="col align-self-center">
-                        <form method="POST" :action="'/transactions/' + String(currentTransaction.id) + '/asyncupdate'">
+
+                        <form method="POST" :action="'/transactions/' + String(currentTransaction.id) + '/asyncupdate'" :ref="'form-tag-' + String(currentTransaction.id)">
                           <input type="hidden" name="_token" :value="csrf">
-                          somethign
+
+                          <!-- inputs -->
+                          <div class="form-row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label for="labelInput">LABEL</label>
+                                <input type="text" class="form-control" id="labelInput" maxlength="35">
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label for="dateInput">DATE</label>
+                                <input type="date" class="form-control" id="dateInput">
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label for="amountInput">AMOUNT</label>
+                                <input type="number" class="form-control" id="amountInput" step="0.01" min="-5000" max="5000">
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- buttons -->
+                          <div class="mt-5">
+                            <hr />
+                            <div class="float-right mt-3 mb-3">
+                              <button type="button" class="btn btn-lg btn-light mr-2" @click="hideForm('form-' + currentTransaction.id)">Cancel</button>
+                              <button type="button" class="btn btn-lg btn-primary" @click="updateTransaction(currentTransaction.id)">Update Entry</button>
+                            </div>
+                          </div>
+
                         </form>
+
                       </div>
                     </div>
                   </div>
@@ -106,9 +139,11 @@
           var month = date.getMonth();
           return months[month];
         },
+        //when the mouse hovers over an entry then it's "edit" and "delete" links are shown
         mouseover: function (event) {
           event.currentTarget.querySelector('.edit-links').style.display = 'block';
         },
+        //when the mouse leaves an entry then it's "edit" and "delete" links are hidden
         mouseleave: function (event) {
           event.currentTarget.querySelector('.edit-links').style.display = 'none';
         },
@@ -125,6 +160,38 @@
                     this.emitUpdate();
                  } else {
                     console.log('error deleting transaction - id # ' + String(id));
+                 }
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
+        //when an entry's "edit" link is clicked then it's corresponding form is displayed
+        showForm: function(ref) {
+          this.$refs[ref][0].style.display = 'block';
+        },
+        //when the cancel button in an entry's form is clicked then the form is hidden
+        hideForm: function(ref) {
+          this.$refs[ref][0].style.display = 'none';
+        },
+        updateTransaction: function (id) {
+          var formTagRef = 'form-tag-' + String(id);
+
+          axios.post('/transactions/' + String(id) + '/asyncupdate', {
+              label: this.$refs[formTagRef][0].elements.labelInput.value,
+              date: this.$refs[formTagRef][0].elements.dateInput.value,
+              amount: this.$refs[formTagRef][0].elements.amountInput.value,
+              headers: {
+                  'Accept': 'application/json'
+              }
+          })
+            .then(response => {
+                 var data = response.data;
+                 if(data.status == 'updated') {
+                    console.log('updated transaction - id # ' + String(id));
+                    this.emitUpdate();
+                 } else {
+                    console.log('error updating transaction - id # ' + String(id));
                  }
             })
             .catch(error => {
@@ -189,6 +256,15 @@
     display: none;
   }
   .edit-form {
-    display: block
+    display: none;
+  }
+  /* hide number inputs spin boxes */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  input[type=number] {
+      -moz-appearance:textfield; /* Firefox */
   }
 </style>

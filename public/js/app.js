@@ -1989,6 +1989,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     csrf: String,
@@ -2014,9 +2047,11 @@ __webpack_require__.r(__webpack_exports__);
       var month = date.getMonth();
       return months[month];
     },
+    //when the mouse hovers over an entry then it's "edit" and "delete" links are shown
     mouseover: function mouseover(event) {
       event.currentTarget.querySelector('.edit-links').style.display = 'block';
     },
+    //when the mouse leaves an entry then it's "edit" and "delete" links are hidden
     mouseleave: function mouseleave(event) {
       event.currentTarget.querySelector('.edit-links').style.display = 'none';
     },
@@ -2036,6 +2071,39 @@ __webpack_require__.r(__webpack_exports__);
           _this.emitUpdate();
         } else {
           console.log('error deleting transaction - id # ' + String(id));
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    //when an entry's "edit" link is clicked then it's corresponding form is displayed
+    showForm: function showForm(ref) {
+      this.$refs[ref][0].style.display = 'block';
+    },
+    //when the cancel button in an entry's form is clicked then the form is hidden
+    hideForm: function hideForm(ref) {
+      this.$refs[ref][0].style.display = 'none';
+    },
+    updateTransaction: function updateTransaction(id) {
+      var _this2 = this;
+
+      var formTagRef = 'form-tag-' + String(id);
+      axios.post('/transactions/' + String(id) + '/asyncupdate', {
+        label: this.$refs[formTagRef][0].elements.labelInput.value,
+        date: this.$refs[formTagRef][0].elements.dateInput.value,
+        amount: this.$refs[formTagRef][0].elements.amountInput.value,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
+        var data = response.data;
+
+        if (data.status == 'updated') {
+          console.log('updated transaction - id # ' + String(id));
+
+          _this2.emitUpdate();
+        } else {
+          console.log('error updating transaction - id # ' + String(id));
         }
       })["catch"](function (error) {
         console.log(error);
@@ -6663,7 +6731,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nul {\n  list-style-type: none;\n}\n.deposit {\n  color: #00b357;\n}\n.edit-links {\n  display: none;\n}\n.edit-form {\n  display: block\n}\n", ""]);
+exports.push([module.i, "\nul {\n  list-style-type: none;\n}\n.deposit {\n  color: #00b357;\n}\n.edit-links {\n  display: none;\n}\n.edit-form {\n  display: none;\n}\n/* hide number inputs spin boxes */\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n    -webkit-appearance: none;\n    margin: 0;\n}\ninput[type=number] {\n    -moz-appearance:textfield; /* Firefox */\n}\n", ""]);
 
 // exports
 
@@ -38566,7 +38634,14 @@ var render = function() {
                                     "a",
                                     {
                                       staticClass: "mr-3",
-                                      attrs: { href: "#" }
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.showForm(
+                                            "form-" + currentTransaction.id
+                                          )
+                                        }
+                                      }
                                     },
                                     [_vm._v("EDIT")]
                                   ),
@@ -38625,37 +38700,90 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "card mt-0 edit-form" }, [
-                  _c("div", { staticClass: "card-body" }, [
-                    _c("div", { staticClass: "container" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col align-self-center" }, [
-                          _c(
-                            "form",
-                            {
-                              attrs: {
-                                method: "POST",
-                                action:
-                                  "/transactions/" +
-                                  String(currentTransaction.id) +
-                                  "/asyncupdate"
-                              }
-                            },
-                            [
-                              _c("input", {
-                                attrs: { type: "hidden", name: "_token" },
-                                domProps: { value: _vm.csrf }
-                              }),
-                              _vm._v(
-                                "\n                        somethign\n                      "
-                              )
-                            ]
-                          )
+                _c(
+                  "div",
+                  {
+                    ref: "form-" + String(currentTransaction.id),
+                    refInFor: true,
+                    staticClass: "card mt-0 edit-form"
+                  },
+                  [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "container mt-4" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col align-self-center" }, [
+                            _c(
+                              "form",
+                              {
+                                ref:
+                                  "form-tag-" + String(currentTransaction.id),
+                                refInFor: true,
+                                attrs: {
+                                  method: "POST",
+                                  action:
+                                    "/transactions/" +
+                                    String(currentTransaction.id) +
+                                    "/asyncupdate"
+                                }
+                              },
+                              [
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "_token" },
+                                  domProps: { value: _vm.csrf }
+                                }),
+                                _vm._v(" "),
+                                _vm._m(0, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "mt-5" }, [
+                                  _c("hr"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "float-right mt-3 mb-3" },
+                                    [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "btn btn-lg btn-light mr-2",
+                                          attrs: { type: "button" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.hideForm(
+                                                "form-" + currentTransaction.id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Cancel")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-lg btn-primary",
+                                          attrs: { type: "button" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.updateTransaction(
+                                                currentTransaction.id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Update Entry")]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          ])
                         ])
                       ])
                     ])
-                  ])
-                ])
+                  ]
+                )
               ])
             }),
             0
@@ -38667,7 +38795,53 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "labelInput" } }, [_vm._v("LABEL")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", id: "labelInput", maxlength: "35" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "dateInput" } }, [_vm._v("DATE")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "date", id: "dateInput" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "amountInput" } }, [_vm._v("AMOUNT")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "number",
+              id: "amountInput",
+              step: "0.01",
+              min: "-5000",
+              max: "5000"
+            }
+          })
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
