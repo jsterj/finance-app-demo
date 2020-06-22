@@ -18,11 +18,13 @@ class TransactionsController extends Controller
     {
         //obtain the user's most recent transactions
         $transactions = $this->getCurrentTransactions();
+        $plinks = $transactions->links();  //get the pagination links
+        $transactions = $transactions->getCollection(); //get the transactions from the paginator
 
         //get the user's current balance
         $balance = Auth::user()->transactions()->sum('amount');
 
-        return view('transactions', ['transactions' => $transactions->toJson(), 'balance' => $balance]);
+        return view('transactions', ['transactions' => $transactions->toJson(), 'balance' => $balance, 'plinks' => $plinks]);
     }
 
     /**
@@ -36,6 +38,7 @@ class TransactionsController extends Controller
 
         //obtain the user's most recent transactions
         $transactions = $this->getCurrentTransactions();
+        $transactions = $transactions->getCollection();
 
         //get the user's current balance
         $balance = $user->transactions()->sum('amount');
@@ -56,7 +59,8 @@ class TransactionsController extends Controller
     private function getCurrentTransactions()
     {
         $user = Auth::user();
-        return $user->transactions()->select('id', 'label', 'date', 'amount')->orderBy('date', 'desc')->take(config('finance.transaction.numTransactionsToList'))->get();
+        //return $user->transactions()->select('id', 'label', 'date', 'amount')->orderBy('date', 'desc')->take(config('finance.transaction.numTransactionsToList'))->get();
+        return $user->transactions()->select('id', 'label', 'date', 'amount')->orderBy('date', 'desc')->simplePaginate(config('finance.transaction.numTransactionsToList'));
     }
 
     /**

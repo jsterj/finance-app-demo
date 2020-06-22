@@ -1,7 +1,7 @@
 <template>
   <div>
     <transaction-navbar-component @update="update" :csrf="csrf" :currentBalance="currentBalance" ></transaction-navbar-component>
-    <transaction-list-component @update="update" :csrf="csrf" :currentBalance="currentBalance" :currentTransactions="currentTransactions"></transaction-list-component>
+    <transaction-list-component @update="update" :csrf="csrf" :currentPlinks="currentPlinks" :currentBalance="currentBalance" :currentTransactions="currentTransactions"></transaction-list-component>
   </div>
 </template>
 
@@ -12,11 +12,13 @@
       props: {
         balance: Number,
         transactions: [Object, Array],
+        plinks: String,
       },
       data(){
         return {
             currentBalance: 0,
             currentTransactions: [],
+            currentPlinks: '',
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         }
       },
@@ -24,6 +26,7 @@
         //initialize data values from props sent by the view
         this.currentBalance = this.balance;
         this.currentTransactions = this.transactions;
+        this.currentPlinks  = this.plinks;
       },
       methods: {
         //call server for updated data

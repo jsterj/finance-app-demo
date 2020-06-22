@@ -105,6 +105,8 @@
             </li>
           </ul>
 
+          <div class="float-right mt-2" v-html="currentPlinks"> </div>
+
         </div>
         <div class="col"></div>
       </div>
@@ -118,6 +120,7 @@
         csrf: String,
         currentBalance: Number,
         currentTransactions: [Object, Array],
+        currentPlinks: String,
       },
       mounted(){
         //

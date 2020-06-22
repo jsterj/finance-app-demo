@@ -2022,11 +2022,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     csrf: String,
     currentBalance: Number,
-    currentTransactions: [Object, Array]
+    currentTransactions: [Object, Array],
+    currentPlinks: String
   },
   mounted: function mounted() {//
   },
@@ -2349,12 +2352,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     balance: Number,
-    transactions: [Object, Array]
+    transactions: [Object, Array],
+    plinks: String
   },
   data: function data() {
     return {
       currentBalance: 0,
       currentTransactions: [],
+      currentPlinks: '',
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
@@ -2362,6 +2367,7 @@ __webpack_require__.r(__webpack_exports__);
     //initialize data values from props sent by the view
     this.currentBalance = this.balance;
     this.currentTransactions = this.transactions;
+    this.currentPlinks = this.plinks;
   },
   methods: {
     //call server for updated data
@@ -38957,7 +38963,12 @@ var render = function() {
               ])
             }),
             0
-          )
+          ),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "float-right mt-2",
+            domProps: { innerHTML: _vm._s(_vm.currentPlinks) }
+          })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col" })
@@ -39239,6 +39250,7 @@ var render = function() {
       _c("transaction-list-component", {
         attrs: {
           csrf: _vm.csrf,
+          currentPlinks: _vm.currentPlinks,
           currentBalance: _vm.currentBalance,
           currentTransactions: _vm.currentTransactions
         },
