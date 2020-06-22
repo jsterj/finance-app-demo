@@ -2156,7 +2156,9 @@ __webpack_require__.r(__webpack_exports__);
         } //add formatted amount string for display
 
 
-        newArray[i].amountString = this.formatCurrency(newArray[i].amount, true);
+        newArray[i].amountString = this.formatCurrency(newArray[i].amount, true); //add formatted date string for display
+
+        newArray[i].dateString = String(date.getDate()).padStart(2, '0') + ' ' + this.getMonthString(date) + ', ' + date.getFullYear() + ' at ' + date.toLocaleTimeString().replace(/(.*)\D\d+/, '$1');
       }
 
       return newArray;
@@ -38621,7 +38623,7 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("p", { staticClass: "text-muted m-0" }, [
-                                _vm._v(_vm._s(currentTransaction.date))
+                                _vm._v(_vm._s(currentTransaction.dateString))
                               ])
                             ]
                           ),

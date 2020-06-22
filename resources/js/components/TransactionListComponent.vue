@@ -32,7 +32,7 @@
                     <div class="row">
                       <div class="col-6 align-self-center">
                         <h4>{{ currentTransaction.label }}</h4>
-                        <p class="text-muted m-0">{{ currentTransaction.date }}</p>
+                        <p class="text-muted m-0">{{ currentTransaction.dateString }}</p>
                       </div>
                       <div class="col-3 align-self-center">
                         <div class="edit-links float-right">
@@ -242,6 +242,9 @@
 
             //add formatted amount string for display
             newArray[i].amountString = this.formatCurrency(newArray[i].amount, true);
+
+            //add formatted date string for display
+            newArray[i].dateString = String(date.getDate()).padStart(2, '0') + ' ' + this.getMonthString(date) + ', ' + date.getFullYear() + ' at ' + date.toLocaleTimeString().replace(/(.*)\D\d+/, '$1');
           }
           return newArray;
         },
