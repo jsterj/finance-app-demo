@@ -6858,7 +6858,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.transaction-navbar {\n  background-color: #192b4e;\n  height: 150px;\n}\n.transaction-navbar-inner-div {\n  height: 100%;\n}\n.navbar-text {\n  color: white;\n}\n.navbar-text-secondary {\n  color: #a3aab8;\n}\n.navbar-button {\n  background-color: #0054fe;\n}\n.positive-balance {\n  color: #00b357;\n}\n", ""]);
+exports.push([module.i, "\n.transaction-navbar {\n  background-color: #192b4e;\n  height: 150px;\n}\n.transaction-navbar-inner-div {\n  height: 100%;\n}\n.navbar-text {\n  color: white;\n}\n.navbar-text-secondary {\n  color: #a3aab8;\n}\n.navbar-button {\n  background-color: #0054fe;\n}\n.positive-balance {\n  color: #00b357;\n}\n.negative-balance {\n  color: white;\n}\n", ""]);
 
 // exports
 
@@ -39047,12 +39047,10 @@ var render = function() {
                           "\n              "
                       )
                     ])
-                  : _c("h4", { staticClass: "float-right" }, [
+                  : _c("h4", { staticClass: "float-right negative-balance" }, [
                       _vm._v(
                         "\n                " +
-                          _vm._s(
-                            _vm.formatCurrency(_vm.currentBalance, false)
-                          ) +
+                          _vm._s(_vm.formatCurrency(_vm.currentBalance, true)) +
                           "\n              "
                       )
                     ])

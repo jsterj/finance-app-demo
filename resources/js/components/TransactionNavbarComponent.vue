@@ -23,8 +23,8 @@
                 <h4 v-if="currentBalance > 0" class="float-right positive-balance">
                   {{ formatCurrency(currentBalance, false) }}
                 </h4>
-                <h4 v-else class="float-right">
-                  {{ formatCurrency(currentBalance, false) }}
+                <h4 v-else class="float-right negative-balance">
+                  {{ formatCurrency(currentBalance, true) }}
                 </h4>
               </div>
             </div>
@@ -166,5 +166,8 @@
   }
   .positive-balance {
     color: #00b357;
+  }
+  .negative-balance {
+    color: white;
   }
 </style>
