@@ -38742,7 +38742,7 @@ var render = function() {
                                     "a",
                                     {
                                       staticClass: "mr-3",
-                                      attrs: { href: "#" },
+                                      attrs: { href: "javascript:void(0)" },
                                       on: {
                                         click: function($event) {
                                           return _vm.showForm(
@@ -38757,7 +38757,7 @@ var render = function() {
                                   _c(
                                     "a",
                                     {
-                                      attrs: { href: "#" },
+                                      attrs: { href: "javascript:void(0)" },
                                       on: {
                                         click: function($event) {
                                           return _vm.deleteTransaction(

@@ -36,8 +36,8 @@
                       </div>
                       <div class="col-3 align-self-center">
                         <div class="edit-links float-right">
-                          <a href="#" @click="showForm('form-' + currentTransaction.id)" class="mr-3">EDIT</a>
-                          <a href="#" @click="deleteTransaction(currentTransaction.id)">DELETE</a>
+                          <a href="javascript:void(0)" @click="showForm('form-' + currentTransaction.id)" class="mr-3">EDIT</a>
+                          <a href="javascript:void(0)" @click="deleteTransaction(currentTransaction.id)">DELETE</a>
                         </div>
                       </div>
                       <div class="col-3 align-self-center">
