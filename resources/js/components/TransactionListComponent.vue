@@ -80,7 +80,7 @@
                             <div class="col">
                               <div class="form-group">
                                 <label for="amountInput">AMOUNT</label>
-                                <input type="number" class="form-control" id="amountInput" step="0.01" min="-5000" max="5000" :value="currentTransaction.amount">
+                                <input type="number" class="form-control" id="amountInput" step="0.01" min="-5000" max="5000" :value="Number(currentTransaction.amount).toFixed(2)">
                               </div>
                             </div>
                           </div>

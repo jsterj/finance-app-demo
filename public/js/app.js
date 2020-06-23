@@ -38904,7 +38904,9 @@ var render = function() {
                                           max: "5000"
                                         },
                                         domProps: {
-                                          value: currentTransaction.amount
+                                          value: Number(
+                                            currentTransaction.amount
+                                          ).toFixed(2)
                                         }
                                       })
                                     ])
