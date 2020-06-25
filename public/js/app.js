@@ -2021,10 +2021,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     csrf: String,
@@ -38660,55 +38656,33 @@ var render = function() {
                       _c("div", { staticClass: "row" }, [
                         _c(
                           "div",
-                          { staticClass: "col-9 align-self-center pl-0" },
+                          { staticClass: "col-12 align-self-center pl-0" },
                           [
-                            _c("h5", { staticClass: "text-muted mt-5 mb-3" }, [
-                              _vm._v(_vm._s(currentTransaction.headerDate))
+                            _c("h5", { staticClass: "mt-5 mb-3" }, [
+                              _vm._v(_vm._s(currentTransaction.headerDate)),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-muted mt-5 mb-3" },
+                                [
+                                  _vm._v(
+                                    "\n                    (" +
+                                      _vm._s(
+                                        _vm.formatCurrency(
+                                          Number(
+                                            currentTransaction.headerTotal
+                                          ),
+                                          true
+                                        )
+                                      ) +
+                                      ")\n                  "
+                                  )
+                                ]
+                              )
                             ])
                           ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-3 align-self-center" }, [
-                          Number(currentTransaction.headerTotal) > 0
-                            ? _c(
-                                "h4",
-                                {
-                                  staticClass: "float-right deposit pr-4 mt-4"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                    " +
-                                      _vm._s(
-                                        _vm.formatCurrency(
-                                          Number(
-                                            currentTransaction.headerTotal
-                                          ),
-                                          true
-                                        )
-                                      ) +
-                                      "\n                  "
-                                  )
-                                ]
-                              )
-                            : _c(
-                                "h4",
-                                { staticClass: "float-right pr-4 mt-4" },
-                                [
-                                  _vm._v(
-                                    "\n                    " +
-                                      _vm._s(
-                                        _vm.formatCurrency(
-                                          Number(
-                                            currentTransaction.headerTotal
-                                          ),
-                                          true
-                                        )
-                                      ) +
-                                      "\n                  "
-                                  )
-                                ]
-                              )
-                        ])
+                        )
                       ])
                     ])
                   : _vm._e(),

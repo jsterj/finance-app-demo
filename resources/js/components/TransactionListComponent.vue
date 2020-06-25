@@ -11,16 +11,12 @@
               <!-- daily header when applicable -->
               <div v-if="currentTransaction.headerDate" class="container">
                 <div class="row">
-                  <div class="col-9 align-self-center pl-0">
-                    <h5 class="text-muted mt-5 mb-3">{{ currentTransaction.headerDate }}</h5>
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <h4 v-if="Number(currentTransaction.headerTotal) > 0" class="float-right deposit pr-4 mt-4">
-                      {{ formatCurrency(Number(currentTransaction.headerTotal), true) }}
-                    </h4>
-                    <h4 v-else class="float-right pr-4 mt-4">
-                      {{ formatCurrency(Number(currentTransaction.headerTotal), true) }}
-                    </h4>
+                  <div class="col-12 align-self-center pl-0">
+                    <h5 class="mt-5 mb-3">{{ currentTransaction.headerDate }}<br />
+                    <small class="text-muted mt-5 mb-3">
+                      ({{ formatCurrency(Number(currentTransaction.headerTotal), true) }})
+                    </small>
+                    </h5>
                   </div>
                 </div>
               </div>
