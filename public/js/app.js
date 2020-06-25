@@ -2278,6 +2278,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     csrf: String,
@@ -39027,10 +39029,10 @@ var render = function() {
                     _c(
                       "svg",
                       {
-                        staticClass: "ml-1 mr-1 bi bi-plus",
+                        staticClass: "ml-2 mr-2 bi bi-plus-circle",
                         attrs: {
-                          width: "2em",
-                          height: "2em",
+                          width: "1.8em",
+                          height: "1.8em",
                           viewBox: "0 0 16 16",
                           fill: "white",
                           xmlns: "http://www.w3.org/2000/svg"
@@ -39051,6 +39053,14 @@ var render = function() {
                             d:
                               "M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"
                           }
+                        }),
+                        _vm._v(" "),
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                          }
                         })
                       ]
                     ),
@@ -39069,10 +39079,10 @@ var render = function() {
                     _c(
                       "svg",
                       {
-                        staticClass: "ml-2 mr-1 bi bi-upload",
+                        staticClass: "ml-2 mr-1 bi bi-cloud-upload",
                         attrs: {
-                          width: "2em",
-                          height: "2em",
+                          width: "1.8em",
+                          height: "1.8em",
                           viewBox: "0 0 16 16",
                           fill: "white",
                           xmlns: "http://www.w3.org/2000/svg"
@@ -39081,9 +39091,8 @@ var render = function() {
                       [
                         _c("path", {
                           attrs: {
-                            "fill-rule": "evenodd",
                             d:
-                              "M.5 8a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5a.5.5 0 0 1 1 0V12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8.5A.5.5 0 0 1 .5 8zM5 4.854a.5.5 0 0 0 .707 0L8 2.56l2.293 2.293A.5.5 0 1 0 11 4.146L8.354 1.5a.5.5 0 0 0-.708 0L5 4.146a.5.5 0 0 0 0 .708z"
+                              "M4.887 6.2l-.964-.165A2.5 2.5 0 1 0 3.5 11H6v1H3.5a3.5 3.5 0 1 1 .59-6.95 5.002 5.002 0 1 1 9.804 1.98A2.501 2.501 0 0 1 13.5 12H10v-1h3.5a1.5 1.5 0 0 0 .237-2.981L12.7 7.854l.216-1.028a4 4 0 1 0-7.843-1.587l-.185.96z"
                           }
                         }),
                         _vm._v(" "),
@@ -39091,7 +39100,15 @@ var render = function() {
                           attrs: {
                             "fill-rule": "evenodd",
                             d:
-                              "M8 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0v-8A.5.5 0 0 1 8 2z"
+                              "M5 8.854a.5.5 0 0 0 .707 0L8 6.56l2.293 2.293A.5.5 0 1 0 11 8.146L8.354 5.5a.5.5 0 0 0-.708 0L5 8.146a.5.5 0 0 0 0 .708z"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M8 6a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0v-8A.5.5 0 0 1 8 6z"
                           }
                         })
                       ]
