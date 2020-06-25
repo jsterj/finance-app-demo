@@ -6865,7 +6865,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.transaction-navbar {\n  background-color: #192b4e;\n  height: 150px;\n}\n.transaction-navbar-inner-div {\n  height: 100%;\n}\n.navbar-text {\n  color: white;\n}\n.navbar-text-secondary {\n  color: #a3aab8;\n}\n.navbar-button {\n  background-color: #0054fe;\n}\n.positive-balance {\n  color: #37ae45;\n}\n.negative-balance {\n  color: red;\n}\n", ""]);
+exports.push([module.i, "\n.transaction-navbar {\n  background-color: #15431b;\n  height: 100px;\n}\n.transaction-navbar-inner-div {\n  height: 100%;\n}\n.navbar-text {\n  color: white;\n}\n.navbar-text-secondary {\n  color: #a3aab8;\n}\n.navbar-button {\n  background-color: #0054fe;\n}\n.positive-balance {\n  color: #37ae45;\n}\n.negative-balance {\n  color: red;\n}\n", ""]);
 
 // exports
 
@@ -39020,8 +39020,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass:
-                      "btn btn-primary border-0 navbar-button ml-3 pl-0",
+                    staticClass: "btn btn btn-outline-light border-0 ml-3 pl-0",
                     attrs: { type: "button" },
                     on: { click: _vm.showModal }
                   },
@@ -39071,8 +39070,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass:
-                      "btn btn-primary border-0 navbar-button ml-3 pl-0",
+                    staticClass: "btn btn btn-outline-light border-0 ml-3 pl-0",
                     attrs: { type: "button", disabled: "" }
                   },
                   [
